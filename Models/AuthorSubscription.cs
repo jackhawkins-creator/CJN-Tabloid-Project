@@ -2,16 +2,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Tabloid.Models;
 
-public class PostSubscription
+public class AuthorSubscription
 {
     public int Id { get; set; }
 
     [Required]
-    public int PostId { get; set; }
+    public int SubscriberUserId { get; set; }
 
     [Required]
-    public int SubscriberId { get; set; }
+    public int AuthorUserId { get; set; }
 
     public DateTime SubscribedOn { get; set; }
-
 }
