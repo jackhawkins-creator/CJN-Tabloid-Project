@@ -4,11 +4,18 @@ using Tabloid.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Tabloid.Data;
+
 public class TabloidDbContext : IdentityDbContext<IdentityUser>
 {
     private readonly IConfiguration _configuration;
 
     public DbSet<UserProfile> UserProfiles { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Post> Posts { get; set; }
+    public DbSet<Reaction> Reactions { get; set; }
+    public DbSet<PostSubscription> PostSubscriptions { get; set; }
+
+
 
 
     public TabloidDbContext(DbContextOptions<TabloidDbContext> context, IConfiguration config) : base(context)
@@ -145,5 +152,102 @@ public class TabloidDbContext : IdentityDbContext<IdentityUser>
                 IdentityUserId = "d224a03d-bf0c-4a05-b728-e3521e45d74d",
             }
         });
+        modelBuilder.Entity<Category>().HasData(new Category[]
+{
+    new Category { Id = 1, Name = "Cooking" },
+    new Category { Id = 2, Name = "Gaming" },
+    new Category { Id = 3, Name = "Travel" },
+    new Category { Id = 4, Name = "Tech" }
+});
+        modelBuilder.Entity<Post>().HasData(new Post[]
+        {
+    new Post
+    {
+        Id = 1,
+        Title = "10-Minute Meals",
+        SubTitle = "Quick and easy recipes",
+        CategoryId = 1,
+        PublishingDate = new DateTime(2024, 6, 1),
+        HeaderImageUrl = "https://example.com/images/cooking1.jpg",
+        Body = "These meals are perfect for busy weeknights.",
+        AuthorId = 2
+    },
+    new Post
+    {
+        Id = 2,
+        Title = "Top 5 Indie Games of 2025",
+        SubTitle = "Underrated gems you need to play",
+        CategoryId = 2,
+        PublishingDate = new DateTime(2024, 12, 10),
+        HeaderImageUrl = "https://example.com/images/gaming1.jpg",
+        Body = "These indie games took us by surprise...",
+        AuthorId = 3
+    },
+    new Post
+    {
+        Id = 3,
+        Title = "Backpacking Through Europe",
+        SubTitle = "Affordable and unforgettable",
+        CategoryId = 3,
+        PublishingDate = new DateTime(2023, 9, 15),
+        HeaderImageUrl = "https://example.com/images/travel1.jpg",
+        Body = "Tips and tricks for the budget traveler.",
+        AuthorId = 4
+    }
+        });
+        modelBuilder.Entity<Reaction>().HasData(new Reaction[]
+        {
+    new Reaction
+    {
+        Id = 1,
+        PostId = 1,
+        UserProfileId = 3,
+        Emoji = "👍",
+        ReactedOn = new DateTime(2024, 6, 2)
+    },
+    new Reaction
+    {
+        Id = 2,
+        PostId = 2,
+        UserProfileId = 2,
+        Emoji = "❤️",
+        ReactedOn = new DateTime(2024, 12, 11)
+    },
+    new Reaction
+    {
+        Id = 3,
+        PostId = 3,
+        UserProfileId = 5,
+        Emoji = "👎",
+        ReactedOn = new DateTime(2023, 9, 16)
+    }
+        });
+
+        modelBuilder.Entity<PostSubscription>().HasData(new PostSubscription[]
+    {
+    new PostSubscription
+    {
+        Id = 1,
+        PostId = 1,
+        SubscriberId = 3, // Jane Smith
+        SubscribedOn = new DateTime(2024, 6, 3)
+    },
+    new PostSubscription
+    {
+        Id = 2,
+        PostId = 2,
+        SubscriberId = 2, // John Doe
+        SubscribedOn = new DateTime(2024, 12, 12)
+    },
+    new PostSubscription
+    {
+        Id = 3,
+        PostId = 1,
+        SubscriberId = 4, // Alice Johnson
+        SubscribedOn = new DateTime(2024, 6, 4)
+    }
+    });
+
+
     }
 }
