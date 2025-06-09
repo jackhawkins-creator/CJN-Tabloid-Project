@@ -13,7 +13,10 @@ public class TabloidDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Category> Categories { get; set; }
     public DbSet<Post> Posts { get; set; }
     public DbSet<Reaction> Reactions { get; set; }
-    public DbSet<PostSubscription> PostSubscriptions { get; set; }
+    public DbSet<Comment> Comments { get; set; }
+    public DbSet<Tag> Tags { get; set; }
+    public DbSet<PostTag> PostTags { get; set; }
+    public DbSet<AuthorSubscription> AuthorSubscriptions { get; set; }
 
 
 
@@ -223,30 +226,32 @@ public class TabloidDbContext : IdentityDbContext<IdentityUser>
     }
         });
 
-        modelBuilder.Entity<PostSubscription>().HasData(new PostSubscription[]
-    {
-    new PostSubscription
-    {
-        Id = 1,
-        PostId = 1,
-        SubscriberId = 3, // Jane Smith
-        SubscribedOn = new DateTime(2024, 6, 3)
-    },
-    new PostSubscription
-    {
-        Id = 2,
-        PostId = 2,
-        SubscriberId = 2, // John Doe
-        SubscribedOn = new DateTime(2024, 12, 12)
-    },
-    new PostSubscription
-    {
-        Id = 3,
-        PostId = 1,
-        SubscriberId = 4, // Alice Johnson
-        SubscribedOn = new DateTime(2024, 6, 4)
-    }
-    });
+        modelBuilder.Entity<Tag>().HasData(
+        new Tag { Id = 1, Name = "Budget" },
+        new Tag { Id = 2, Name = "Quick" },
+        new Tag { Id = 3, Name = "Fun" }
+    );
+
+        modelBuilder.Entity<PostTag>().HasData(
+            new PostTag { Id = 1, PostId = 1, TagId = 2 },
+            new PostTag { Id = 2, PostId = 3, TagId = 1 }
+        );
+
+        modelBuilder.Entity<AuthorSubscription>().HasData(
+            new AuthorSubscription { Id = 1, SubscriberUserId = 2, AuthorUserId = 3, SubscribedOn = new DateTime(2024, 6, 5) }
+        );
+
+        modelBuilder.Entity<Comment>().HasData(
+            new Comment
+            {
+                Id = 1,
+                PostId = 1,
+                UserProfileId = 3,
+                Subject = "Love this!",
+                Content = "Quick meals are always appreciated.",
+                CreatedOn = new DateTime(2024, 6, 2)
+            }
+        );
 
 
     }
