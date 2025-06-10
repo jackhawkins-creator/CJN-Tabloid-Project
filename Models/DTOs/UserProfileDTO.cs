@@ -1,49 +1,16 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Identity;
+namespace Tabloid.Models.DTOs;
 
-namespace Tabloid.Models;
-
-public class UserProfile
+public class UserProfileDTO
 {
     public int Id { get; set; }
-
-    [Required]
-    [MaxLength(50)]
     public string FirstName { get; set; }
-
-    [Required]
-    [MaxLength(50)]
     public string LastName { get; set; }
-
-    [NotMapped]
-    public string UserName { get; set; }
-
-    [NotMapped]
-    public string Email { get; set; }
-
     public DateTime CreateDateTime { get; set; }
-
-    [DataType(DataType.Url)]
-    [MaxLength(255)]
     public string ImageLocation { get; set; }
-
-    [NotMapped]
-    public List<string> Roles { get; set; }
-
     public string IdentityUserId { get; set; }
 
-    public IdentityUser IdentityUser { get; set; }
-
-    public string FullName
-    {
-        get
-        {
-            return $"{FirstName} {LastName}";
-        }
-    }
-
-    [NotMapped]
+    // Optional: include if needed for display/UI
+    public string FullName => $"{FirstName} {LastName}";
     public string TimeSinceJoin
     {
         get
@@ -89,6 +56,4 @@ public class UserProfile
             }
         }
     }
-
-
 }
