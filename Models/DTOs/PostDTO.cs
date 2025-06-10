@@ -10,4 +10,14 @@ public class PostDTO
     public string HeaderImageUrl { get; set; }
     public string Body { get; set; }
     public int AuthorId { get; set; }
+    public int ReadTime
+    {
+        get
+        {
+            int wordCount = Body.Split(new char[] { ' ', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).Length;
+
+
+            return (int)Math.Ceiling(wordCount / 200.0);
+        }
+    }
 }

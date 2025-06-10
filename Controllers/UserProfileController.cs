@@ -20,10 +20,10 @@ public class UserProfileController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize]
+    //[Authorize]
     public IActionResult Get()
     {
-        return Ok(_dbContext.UserProfiles.ToList());
+        return Ok(_dbContext.UserProfiles.OrderByDescending(u => u.CreateDateTime).ToList());
     }
 
     [HttpGet("withroles")]
@@ -96,4 +96,5 @@ public class UserProfileController : ControllerBase
         user.UserName = user.IdentityUser.UserName;
         return Ok(user);
     }
+
 }
