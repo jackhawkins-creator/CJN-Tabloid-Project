@@ -3,8 +3,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { tryGetLoggedInUser } from './components/managers/authmanager';
-import { Spinner } from 'reactstrap';
+import { Navbar, Spinner } from 'reactstrap';
 import ApplicationViews from './ApplicationViews';
+import NavBar from './Navbar';
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState();
@@ -21,6 +22,8 @@ function App() {
 
   return (
   <>
+  <NavBar loggedInUser={loggedInUser}
+      setLoggedInUser={setLoggedInUser}/>
     <ApplicationViews
       loggedInUser={loggedInUser}
       setLoggedInUser={setLoggedInUser}

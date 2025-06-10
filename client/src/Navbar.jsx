@@ -20,8 +20,15 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                         <Collapse isOpen={open} navbar>
                             <Nav navbar>
                                 <NavItem onClick={() => setOpen(false)} />
+                                     <NavLink tag={RRNavLink} to="/tags">
+                                     <button>
+                                    Tag Manager
+                                    </button>
+                                    </NavLink>
                                     <NavLink tag={RRNavLink} to="/create-post">
+                                    <button>
                                     Create Post
+                                    </button>
                                     </NavLink>
                             </Nav>
                         </Collapse>
