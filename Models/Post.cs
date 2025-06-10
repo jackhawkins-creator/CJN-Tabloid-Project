@@ -35,4 +35,8 @@ public class Post
             return (int)Math.Ceiling(wordCount / 200.0);
         }
     }
+    public Category Category { get; set; }
+    public UserProfile Author { get; set; }
+    public List<Reaction> Reactions { get; set; }
+
 }
