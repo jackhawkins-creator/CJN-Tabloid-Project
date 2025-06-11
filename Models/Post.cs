@@ -38,5 +38,6 @@ public class Post
     public Category Category { get; set; }
     public UserProfile Author { get; set; }
     public List<Reaction> Reactions { get; set; }
+    public PostTag PostTag { get; set;}
 
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { GetTags } from "../managers/tagManager";
-import { getAllPosts, getPostsByTagId } from "../Components/managers/postManager";
+import { getAllPosts, getPostsByTagId } from "../managers/postManager";
 export const PostExplorer = () => {
 
     const [allPosts, setAllPosts] = useState([])
@@ -62,10 +62,11 @@ export const PostExplorer = () => {
             ))}
             {filteredPosts.map((post) => (
                 <div key={post?.id}>
-                    <div>{post.title}</div>
-                    <div>{post.body}</div>
-                    <div>Published on: {new Date(post.publishingDate).toLocaleDateString()}</div>
-                    <div>Read Time: {post.readTime}</div>
+                    <h3>Post Number: {post.id}</h3>
+                    <p>{post.title}</p>
+                    <p>{post.body}</p>
+                    <p>Published on: {new Date(post.publishingDate).toLocaleDateString()}</p>
+                    <p>Read Time: {post.readTime}</p>
                 </div>
             ))}
         </>
