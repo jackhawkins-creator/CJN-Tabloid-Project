@@ -37,3 +37,8 @@ export const updatePost = (post) => {
     body: JSON.stringify(post),
   });
 };
+
+export const getPostsByTagId = (tagId) => {
+        return fetch(`/api/post/tag/${tagId}`)
+            .then((res) => res.json())
+    }
