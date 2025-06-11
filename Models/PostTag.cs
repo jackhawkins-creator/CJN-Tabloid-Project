@@ -11,4 +11,5 @@ public class PostTag
 
     [Required]
     public int TagId { get; set; }
+    public Tag Tag { get; set; }
 }

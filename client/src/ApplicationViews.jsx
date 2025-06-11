@@ -7,6 +7,7 @@ import { NewTagForm } from "./Components/Tags/AddNewTagForm";
 import { EditTagForm } from "./Components/Tags/UpdateTagForm";
 import MyPosts from "./Components/Posts/MyPosts";
 import CreatePost from "./Components/Posts/CreatePost";
+import { PostExplorer } from "./Components/Explorer/PostExplorer";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -27,6 +28,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         <Route path="tags" element={<ViewAllTags />} />
         <Route path="tags/create" element={<NewTagForm />} />
         <Route path="tags/update/:id" element={<EditTagForm />} />
+        <Route path="postexplorer" element={<PostExplorer />} />
         <Route
           path="create-post"
           element={

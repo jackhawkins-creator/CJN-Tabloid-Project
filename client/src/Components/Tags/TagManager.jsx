@@ -18,9 +18,9 @@ export const ViewAllTags = () => {
 
   return (
     <>
+    <h2>All Tags</h2>
       {tags.map((tag) => (
         <div key={tag?.id}>
-          <h2>All Tags</h2>
           <h3>Tag Id: {tag.id}</h3>
           <div>Tag Name: {tag.name}</div>
 

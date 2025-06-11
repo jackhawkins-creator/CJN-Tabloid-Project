@@ -164,5 +164,21 @@ public class PostController : ControllerBase
         return NoContent();
     }
 
+    //GET posts by tagId
+    [HttpGet("tag/{tagId}")]
+                            
+    public IActionResult GetPostsByTagId(int tagId) 
+    {
+        var postsWithTag = _dbContext.Posts 
+            .Include(p => p.PostTag) 
+            .ThenInclude(pt => pt.Tag) 
+            .Where(post => post.PostTag.TagId == tagId) 
+            .Select(post => post) 
+            .OrderByDescending(p => p.PublishingDate) 
+            .ToList(); 
+
+        return Ok(postsWithTag); 
+    }
+
 
 }
