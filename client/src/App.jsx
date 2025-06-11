@@ -17,7 +17,7 @@ function App() {
   }, []);
 
   if(loggedInUser === undefined) {
-    return <Spinner />
+    return <div>Page is loading...</div>
   }
 
   return (
