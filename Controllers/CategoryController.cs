@@ -56,7 +56,7 @@ public class CategoryController : ControllerBase
         _dbContext.Categories.Add(PostCategory);
         await _dbContext.SaveChangesAsync();
 
-        return Created($"/api/order/{PostCategory.Id}", dto);
+        return Created($"/api/category/{PostCategory.Id}", dto);
     }
 
     [HttpPut("{id}")]
