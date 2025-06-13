@@ -11,6 +11,7 @@ import { PostExplorer } from "./Components/Explorer/PostExplorer";
 import { ViewAllCategories } from "./components/Categories/CategoryManager";
 import { NewCategoryForm } from "./components/Categories/AddNewCategoryForm";
 import { EditCategoryForm } from "./components/Categories/UpdateCategoryForm";
+import PostDetails from "./Components/Posts/PostDetails";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -34,8 +35,11 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         <Route path="postexplorer" element={<PostExplorer />} />
         <Route path="categorymanager" element={<ViewAllCategories />} />
         <Route path="categorymanager/create" element={<NewCategoryForm />} />
-        <Route path="categorymanager/update/:id" element={<EditCategoryForm />} />
-        
+        <Route
+          path="categorymanager/update/:id"
+          element={<EditCategoryForm />}
+        />
+
         <Route
           path="create-post"
           element={
@@ -49,6 +53,14 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
           element={
             <AuthorizedRoute loggedInUser={loggedInUser}>
               <MyPosts />
+            </AuthorizedRoute>
+          }
+        />
+        <Route
+          path="posts/:id"
+          element={
+            <AuthorizedRoute loggedInUser={loggedInUser}>
+              <PostDetails />
             </AuthorizedRoute>
           }
         />
