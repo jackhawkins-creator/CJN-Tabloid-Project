@@ -8,6 +8,9 @@ import { EditTagForm } from "./Components/Tags/UpdateTagForm";
 import MyPosts from "./Components/Posts/MyPosts";
 import CreatePost from "./Components/Posts/CreatePost";
 import { PostExplorer } from "./Components/Explorer/PostExplorer";
+import { ViewAllCategories } from "./components/Categories/CategoryManager";
+import { NewCategoryForm } from "./components/Categories/AddNewCategoryForm";
+import { EditCategoryForm } from "./components/Categories/UpdateCategoryForm";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -29,6 +32,10 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         <Route path="tags/create" element={<NewTagForm />} />
         <Route path="tags/update/:id" element={<EditTagForm />} />
         <Route path="postexplorer" element={<PostExplorer />} />
+        <Route path="categorymanager" element={<ViewAllCategories />} />
+        <Route path="categorymanager/create" element={<NewCategoryForm />} />
+        <Route path="categorymanager/update/:id" element={<EditCategoryForm />} />
+        
         <Route
           path="create-post"
           element={

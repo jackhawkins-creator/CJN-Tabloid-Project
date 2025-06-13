@@ -34,7 +34,7 @@ public class CategoryController : ControllerBase
 
     public IActionResult Delete(int id)
     {
-        var Category = _dbContext.Categories.SingleOrDefault(p => p.Id == id);
+        var Category = _dbContext.Categories.SingleOrDefault(c => c.Id == id);
         if (Category == null) return NotFound();
 
         _dbContext.Categories.Remove(Category);
@@ -49,7 +49,7 @@ public class CategoryController : ControllerBase
         {
             Id = dto.Id,
             Name = dto.Name
-           
+
 
         };
 
@@ -58,5 +58,44 @@ public class CategoryController : ControllerBase
 
         return Created($"/api/order/{PostCategory.Id}", dto);
     }
+
+    [HttpPut("{id}")]
+
+    public IActionResult UpdateCategory(Category category, int id)
+    {
+        Category CategoryToUpdate = _dbContext.Categories.SingleOrDefault(c => c.Id == id);
+        if (CategoryToUpdate == null)
+        {
+            return NotFound();
+        }
+        else if (id != category.Id)
+        {
+            return BadRequest();
+        }
+
+        //These are the only properties that we want to make editable
+        CategoryToUpdate.Name = category.Name;
+
+
+
+        _dbContext.SaveChanges();
+
+        return NoContent();
+    }
+
+        [HttpGet("{id}")]
+    
+    public IActionResult GetById(int id)
+    {
+        var category = _dbContext.Categories.SingleOrDefault(c => c.Id == id);
+
+        if (category == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(category);
+    }
+
 
 }
