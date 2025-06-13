@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { GetTagById, updateTag } from "../managers/tagManager"
+import { GetCategoryById, updateCategory } from "../managers/categoryManager"
 
 
 
 
-export const EditTagForm = ({}) => {
+export const EditCategoryForm = ({}) => {
 
-    const  [tag, setTag ] = useState({ name: "" })
+    const  [category, setCategory ] = useState({ name: "" })
 
     const navigate = useNavigate()
 
@@ -15,9 +15,9 @@ export const EditTagForm = ({}) => {
 
    
     useEffect(() => {
-    GetTagById(id).then((data) => {
-        const tagObj = data
-        setTag(tagObj)
+    GetCategoryById(id).then((data) => {
+        const categoryObj = data
+        setCategory(categoryObj)
     })
 }, [id])
 
@@ -27,14 +27,14 @@ export const EditTagForm = ({}) => {
 const handleSave = (evt) => {
     evt.preventDefault()
 
-    const editedTag = {
-        id: tag.id,
-        name: tag.name,
+    const editedCategory = {
+        id: category.id,
+        name: category.name,
        
 
     }
-    updateTag(editedTag).then(() => {
-        navigate(`/tags`)
+    updateCategory(editedCategory).then(() => {
+        navigate(`/categorymanager`)
     })
 }
 
@@ -43,7 +43,7 @@ const handleSave = (evt) => {
     return (
    
         <form className="profile">    
-        <h2 className="header">Edit Tag</h2>
+        <h2 className="header">Edit Category</h2>
         <div className="form-container">
             <div className="form-box">
         
@@ -52,11 +52,11 @@ const handleSave = (evt) => {
                     <label>Name:</label>
                     <input
                         type="text"
-                        value={tag?.name}
+                        value={category?.name}
                         onChange={(evt) => {
-                            const copy = { ...tag }
+                            const copy = { ...category }
                             copy.name = evt.target.value
-                            setTag(copy)
+                            setCategory(copy)
                         } }
                         required
                         className="form-container" />
@@ -66,7 +66,7 @@ const handleSave = (evt) => {
                 <fieldset>
                     <div className="form-group">
                         <button onClick={handleSave}
-                            className="edit-button">Save Tag</button>
+                            className="edit-button">Save Category</button>
                     </div>
                 </fieldset>
                </div>   

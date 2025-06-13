@@ -43,6 +43,9 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                 <NavLink tag={RRNavLink} to="/create-post">
                   <button>Create Post</button>
                 </NavLink>
+                 <NavLink tag={RRNavLink} to="/categorymanager">
+                  <button>Category Manager</button>
+                </NavLink>
               </Nav>
             </Collapse>
             <Button
